@@ -1,0 +1,25 @@
+{
+  "name": "upload-obs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "directories": {
+    "src": "src",
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "adm-zip": "^0.5.9",
+    "esdk-obs-nodejs": "^3.21.6",
+    "glob": "^7.2.0",
+    "log4js": "^3.0.6",
+    "x-date": "^1.0.2",
+    "xml2js": "^0.4.17"
+  }
+}
