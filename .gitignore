@@ -96,3 +96,6 @@ Thumbs.db
 # Ignore built ts files
 __tests__/runner/*
 lib/**/*
+/node_modules/
+/.idea/
+/package-lock.json
