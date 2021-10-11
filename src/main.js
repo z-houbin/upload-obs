@@ -171,22 +171,22 @@ function uploadFile(obs, ak, sk, server, region, filePath, bucketName, objectKey
 
                 req.on('response', (response) => {
                     if (response.statusCode < 300) {
-                        console.log('Post object successfully.');
+                        core.info('Post object successfully.');
                     } else {
-                        console.log('Post object failed!!');
+                        core.info('Post object failed!!');
                     }
                     let buffers = [];
                     response.on('data', (data) => {
                         buffers.push(data);
                     }).on('end', () => {
                         if (buffers.length > 0) {
-                            console.log(buffers.toString());
+                            core.info(buffers.toString());
                         }
                         resolve()
                     });
 
                 }).on('error', (err) => {
-                    console.log(err);
+                    core.error(err);
                     reject(err);
                 });
 
@@ -205,6 +205,7 @@ function uploadFile(obs, ak, sk, server, region, filePath, bucketName, objectKey
                  */
                 let readable = fs.createReadStream(filePath);
                 readable.on('data', (data) => {
+                    core.info('write --> ' + data.length)
                     req.write(data);
                 }).on('end', () => {
                     /*
@@ -212,6 +213,7 @@ function uploadFile(obs, ak, sk, server, region, filePath, bucketName, objectKey
                      */
                     req.write(buffers[2]);
                     req.end();
+                    core.info('write --> finish')
                 }).on('err', () => {
                     req.abort();
                     reject()
