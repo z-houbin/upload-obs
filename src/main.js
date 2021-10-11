@@ -3,12 +3,14 @@ const fs = require('fs')
 const path = require('path')
 const AdmZip = require("adm-zip");
 const glob = require("glob")
-require("x-date")
+const moment = require("moment")
 const ObsClient = require('esdk-obs-nodejs');
+
+moment.locale('zh-cn');
 
 async function main() {
     let zipName = core.getInput('name') || 'upload'
-    zipName += '-' + new Date().format('yyyymmdd-HH-MM-ss') + '.zip';
+    zipName += '-' + moment().format('YYYY-MM-DD-HH-mm-ss') + '.zip';
     console.log(zipName)
 
     let folder = core.getInput('path')
