@@ -10,7 +10,7 @@ moment.locale('zh-cn');
 
 async function main() {
     let zipName = core.getInput('name') || 'upload'
-    zipName += '-' + moment().format('YYYY-MM-DD-HH-mm-ss') + '.zip';
+    zipName += '-' + moment().utcOffset(8).format('YYYY-MM-DD-HH-mm-ss') + '.zip';
     core.info(zipName)
 
     let folder = core.getInput('path')
