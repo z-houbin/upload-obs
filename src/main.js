@@ -11,13 +11,13 @@ moment.locale('zh-cn');
 async function main() {
     let zipName = core.getInput('name') || 'upload'
     zipName += '-' + moment().format('YYYY-MM-DD-HH-mm-ss') + '.zip';
-    console.log(zipName)
+    core.info(zipName)
 
     let folder = core.getInput('path')
-    console.log('input.path', folder)
+    core.info('input.path ' + folder)
 
     let searchFiles = await glob.sync(folder, null)
-    console.log('search.filed', searchFiles)
+    core.info('search.filed ' + searchFiles)
 
     if (searchFiles.length === 0) {
         core.error('no file to upload')
@@ -35,7 +35,7 @@ async function main() {
     }
 
     await zip.writeZipPromise(zipName, null)
-    console.log('zip finish ')
+    core.info('zip finish , size ' + fs.lstatSync(zipName).size)
 
     let server = core.getInput('endpoint');
     let region = core.getInput('region');
